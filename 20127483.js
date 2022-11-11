@@ -9,7 +9,7 @@ const courses = [
   { id: 2, name: "GOLang" },
   { id: 3, name: "ReactJS" },
 ];
-
+// API GET "HELLO"
 app.get("/", (req, res) => {
   res.send("HELLO");
 });
@@ -30,6 +30,7 @@ app.get("/api/courses/:id", (req, res) => {
 /*
 API POST
 */
+// API POST ( ADD NEW COURSE)
 app.post("/api/courses/add", (req, res) => {
   const course = {
     id: req.body.id,
@@ -44,5 +45,24 @@ app.post("/api/courses/add", (req, res) => {
     })
   );
 });
+
+/*
+API PUT
+*/
+
+app.put("/api/courses/edit/:id", (req, res) => {
+  const course = courses.find(
+    (courses) => courses.id === parseInt(req.params.id)
+  );
+  course.name = req.body.name;
+  res.send(
+    JSON.stringify({
+      success: true,
+      notice: "Update SUCCESSFULLY",
+      data: courses,
+    })
+  );
+});
+
 const Port = process.env.Port || 3000;
 app.listen(Port, () => console.log("Server running on port ${Port}"));
