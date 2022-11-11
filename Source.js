@@ -51,7 +51,7 @@ app.post("/api/courses/add", (req, res) => {
 API PUT
 */
 
-// API POST ( change name by id)
+// API PuT ( change name by id)
 app.put("/api/courses/edit/:id", (req, res) => {
   const course = courses.find(
     (courses) => courses.id === parseInt(req.params.id)
@@ -69,6 +69,8 @@ app.put("/api/courses/edit/:id", (req, res) => {
 /*
 API DELETE
 */
+
+// API DELETE ( delete name by id)
 
 app.delete("/api/courses/delete/:id", (req, res) => {
   const course = courses.find(
