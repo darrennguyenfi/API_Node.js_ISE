@@ -30,6 +30,7 @@ app.get("/api/courses/:id", (req, res) => {
 /*
 API POST
 */
+
 // API POST ( ADD NEW COURSE)
 app.post("/api/courses/add", (req, res) => {
   const course = {
@@ -50,6 +51,7 @@ app.post("/api/courses/add", (req, res) => {
 API PUT
 */
 
+// API POST ( change name by id)
 app.put("/api/courses/edit/:id", (req, res) => {
   const course = courses.find(
     (courses) => courses.id === parseInt(req.params.id)
@@ -59,6 +61,25 @@ app.put("/api/courses/edit/:id", (req, res) => {
     JSON.stringify({
       success: true,
       notice: "Update SUCCESSFULLY",
+      data: courses,
+    })
+  );
+});
+
+/*
+API DELETE
+*/
+
+app.delete("/api/courses/delete/:id", (req, res) => {
+  const course = courses.find(
+    (courses) => courses.id === parseInt(req.params.id)
+  );
+  let index = courses.indexOf(course);
+  courses.splice(index, 1);
+  res.send(
+    JSON.stringify({
+      success: true,
+      notice: "DELETE SUCCESSFULLY",
       data: courses,
     })
   );
